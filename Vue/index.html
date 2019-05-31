@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<Head>
+  <meta charset="utf-8">
+  <title>Artefact EXAMENSARBETE</title>
+  <link href="https://fonts.googleapis.com/css?family=Nova+Flat|Pacifico|Righteous|Special+Elite|VT323" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+
+<body>
+
+  <div id="app">
+    <h1>Single-page Application</h1>
+    <table class="table1">
+    <tr id=tableHead>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+    </tr>
+
+    <tr v-for="(sale, i) in sales[0]" :key="i">
+      <th scope="row">{{ sale.Month }}</th>
+      <td>{{ sale.Sale }}</td>
+      <td>{{ sales[1][i].Sale }}</td>
+    </tr>
+
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+      <td>Eve</td>
+      <td>Jackson</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <td>Hampus</td>
+      <td>Sandström</td>
+      <td>23</td>
+      <td>Hampus</td>
+      <td>Sandström</td>
+      <td>23</td>
+      <td>Hampus</td>
+      <td>Sandström</td>
+      <td>23</td>
+    </tr>
+  </table>
+
+    <h1>{{ header }}</h1>
+    <div class="product">
+      <div class="product-image">
+        <img class="image-product" v-bind:src="image" :alt="altText"></img>
+      </div>
+      <div class="product-info">
+        <h2>{{ title }}</h2>
+        <span id="onsale" v-if="onSale">On Sale!</span>
+        <p>{{ description }}</p>
+        <p v-if="inventory > 10">In stock</p>
+        <p v-else-if="inventory <= 10 && inventory > 0">Almost out of stock!</p>
+        <p v-else>Out of stock</p>
+
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+
+        <div v-for="variant in variants"
+        :key="variant.variantId"
+        class="color-box"
+        :style="{ backgroundColor: variant.variantColor }"
+        v-on:mouseover="updateProduct(variant.variantImage)">
+        </div>
+
+        <button v-on:click="addToCart" :disabled="inventory == 0" :class="{ disabledButton: inventory == 0 }"> Add to Cart</button>
+
+        <div class="cart">
+          <p>Cart({{cart}})</p>
+          <button v-on:click="removeFromCart">-</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="vue.js"></script>
+</html>
